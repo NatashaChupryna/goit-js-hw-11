@@ -10,27 +10,42 @@ body {
   background-color: white;
   color: #212121;
   line-height: 1.5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.search-form{
-   position: relative;
-      text-align: center;
-          height: 60px;
-    padding-top: 15px;
-        box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
-        background-color: white;
+.search-form {
+  position: relative;
+  text-align: center;
+  height: 80px;
+  padding-top: 15px;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  background-color: white;
+  width: 100%;
 }
-.search_input{
+.search_input {
   height: 35px;
   width: 300px;
   outline: transparent;
 }
-.submit_btn{
+.submit_btn {
   position: absolute;
-right: 39%;
+  right: 39%;
   height: 35px;
   background-color: #afadad;
   border: none;
-    width: 45px;
-    cursor: pointer;
+  width: 45px;
+  cursor: pointer;
+}
+.load-more {
+  background-color: #afadad;
+  border: none;
+  height: 35px;
+  padding: 15px 30px;
+  margin-top: 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }

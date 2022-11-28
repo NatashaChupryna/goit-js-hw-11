@@ -12,11 +12,17 @@ export default class imagesAPI {
   set query(newQuery) {
     this.searchQuery = newQuery;
   }
+  resetPage() {
+    this.page =1
+  }
+  
+  async fetchImg() {
+    const BASE_URL = 'https://pixabay.com/api/';
+    const KEY = '31663443-8f4004a5a69c11dc368053c6d';
 
-  async fetchImg(name, page) {
     try {
       const response = await fetch(
-        `${BASE_URL}?key=${KEY}&q=${this.name}&image_type=photo&orientation=horizontal&safesearch=true`
+        `${BASE_URL}?key=${KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=4`
       );
       if (!response.ok) {
         throw new Error(response.statusText);

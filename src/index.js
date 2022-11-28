@@ -1,29 +1,44 @@
 import './css/styles.css';
 import Notiflix from 'notiflix';
-// import debounce from 'lodash.debounce';
 import imagesAPI from './imgAPI';
 
 const form = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
-const imgAPI = new imagesAPI;
+const loadBtn = document.querySelector('.load-more');
+const imgAPI = new imagesAPI();
 
 form.addEventListener('submit', onFormSubmit);
+loadBtn.addEventListener('click', onLoadMoreBtn);
 
 function onFormSubmit(event) {
   event.preventDefault();
 
   imgAPI.searchQuery = event.currentTarget.elements.searchQuery.value.trim();
+  imgAPI.resetPage();
+  gallery.innerHTML = '';
   if (imgAPI.searchQuery === '') {
     return;
   }
 
   imgAPI.fetchImg().then(data => {
-    return gallery.insertAdjacentHTML = markUp(data);
+    return gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
+    console.log(data)
   });
 }
+function onLoadMoreBtn(event) {
+  imgAPI.page += 1;
+  imgAPI.fetchImg().then(data => {
+    if (data.hits === data.totalHits) {
+      Notiflix.Notify.info(`We're sorry, but you've reached the end of search results.`);
+    }
+    return gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
+  })
+ }
+
 
 function markUp(array) {
-  return array.map(
+  return array
+    .map(
       ({
         webformatURL,
         largeImageURL,
@@ -52,34 +67,4 @@ function markUp(array) {
 </div>`
     )
     .join('');
-}
-
-class imagesAPI {
-  constructor() {
-    this.searchQuery = '';
-    this.page = 1;
-  }
-
-  get query() {
-    return this.searchQuery;
-  }
-  set query(newQuery) {
-    this.searchQuery = newQuery;
-  }
-
-  async fetchImg(name, page) {
-    try {
-      const response = await fetch(
-        `${BASE_URL}?key=${KEY}&q=${this.name}&image_type=photo&orientation=horizontal&safesearch=true`
-      );
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return await response.json();
-    } catch (error) {
-      return Notiflix.Notify.failure(
-        '"Sorry, there are no images matching your search query. Please try again."'
-      );
-    }
-  }
 }
