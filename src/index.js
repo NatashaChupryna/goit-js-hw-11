@@ -71,3 +71,5 @@ function markUp(array) {
     )
     .join('');
 }
+
+browserslist.clearCaches();

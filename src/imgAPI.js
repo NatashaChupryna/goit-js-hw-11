@@ -1,6 +1,6 @@
 import Notiflix from 'notiflix';
 
-export default class imagesAPI {
+export class imagesAPI {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
