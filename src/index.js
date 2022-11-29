@@ -16,17 +16,18 @@ function onFormSubmit(event) {
   imgAPI.searchQuery = event.currentTarget.elements.searchQuery.value.trim();
   imgAPI.resetPage();
   gallery.innerHTML = '';
+
   if (imgAPI.searchQuery === '') {
-    return;
+    return Notiflix.Notify.failure('"Please, enter your query"'); //не працює
   }
 
   imgAPI.fetchImg().then(data => {
     return gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
-    
   });
-loadBtn.classList.remove('hidden');
- 
+  // loadBtn.classList.remove('hidden')
+  loadBtn.classList.toggle('hidden'); //не працює
 }
+
 function onLoadMoreBtn(event) {
   imgAPI.page += 1;
   imgAPI.fetchImg().then(data => {
