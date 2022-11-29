@@ -1,6 +1,6 @@
 import './css/styles.css';
 import Notiflix from 'notiflix';
-import imagesAPI from './imgAPI';
+import { imagesAPI } from './imgAPI';
 
 const form = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
@@ -32,12 +32,13 @@ function onLoadMoreBtn(event) {
   imgAPI.page += 1;
   imgAPI.fetchImg().then(data => {
     if (data.hits === data.totalHits) {
-      Notiflix.Notify.info(`We're sorry, but you've reached the end of search results.`);
+      Notiflix.Notify.info(
+        `We're sorry, but you've reached the end of search results.`
+      );
     }
     return gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
-  })
- }
-
+  });
+}
 
 function markUp(array) {
   return array
