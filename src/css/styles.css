@@ -18,11 +18,12 @@ body {
 .search-form {
   position: relative;
   text-align: center;
-  height: 80px;
+  height: 65px;
   padding-top: 15px;
   box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
   background-color: white;
   width: 100%;
+  margin-bottom: 50px;
 }
 .search_input {
   height: 35px;
