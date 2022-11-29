@@ -22,7 +22,7 @@ export default class imagesAPI {
 
     try {
       const response = await fetch(
-        `${BASE_URL}?key=${KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=4`
+        `${BASE_URL}?key=${KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`
       );
       if (!response.ok) {
         throw new Error(response.statusText);
