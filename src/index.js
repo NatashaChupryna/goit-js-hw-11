@@ -1,11 +1,15 @@
 import './css/styles.css';
 import Notiflix from 'notiflix';
 import { imagesAPI } from './imgAPI';
+import SimpleLightbox from 'simplelightbox';
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const form = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
 const loadBtn = document.querySelector('.load-more');
 const imgAPI = new imagesAPI();
+const simpleligthbox = new SimpleLightbox('.gallery a');
 
 form.addEventListener('submit', onFormSubmit);
 loadBtn.addEventListener('click', onLoadMoreBtn);
@@ -26,6 +30,7 @@ function onFormSubmit(event) {
   });
   // loadBtn.classList.remove('hidden')
   loadBtn.classList.toggle('hidden'); //не працює
+  simpleligthbox.refresh();
 }
 
 function onLoadMoreBtn(event) {
