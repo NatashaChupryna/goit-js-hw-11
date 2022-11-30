@@ -3,13 +3,13 @@ import Notiflix from 'notiflix';
 import { imagesAPI } from './imgAPI';
 import SimpleLightbox from 'simplelightbox';
 // Додатковий імпорт стилів
-import "simplelightbox/dist/simple-lightbox.min.css";
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const form = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
 const loadBtn = document.querySelector('.load-more');
 const imgAPI = new imagesAPI();
-const simpleligthbox = new SimpleLightbox('.thumb a');
+const simpleligthbox = new SimpleLightbox('.gallery a');
 
 form.addEventListener('submit', onFormSubmit);
 loadBtn.addEventListener('click', onLoadMoreBtn);
@@ -21,18 +21,17 @@ function onFormSubmit(event) {
   imgAPI.resetPage();
   gallery.innerHTML = '';
   // simpleligthbox.refresh();
-  
+
   if (imgAPI.searchQuery === '') {
     return Notiflix.Notify.failure('"Please, enter your query"'); //не працює
   }
 
   imgAPI.fetchImg().then(data => {
-   gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
+    gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
     simpleligthbox.refresh();
   });
   // loadBtn.classList.remove('hidden')
-  loadBtn.classList.toggle('hidden'); 
- 
+  loadBtn.classList.toggle('hidden');
 }
 
 function onLoadMoreBtn(event) {
@@ -59,9 +58,7 @@ function markUp(array) {
         comments,
         downloads,
       }) => `<div class="photo-card">
-  <div class="thumb">
       <a href="${largeImageURL}"></a>
-      </div>
   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
@@ -81,4 +78,3 @@ function markUp(array) {
     )
     .join('');
 }
-
