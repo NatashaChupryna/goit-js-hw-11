@@ -30,7 +30,11 @@ export class imagesAPI {
       if (!response.ok) {
         throw new Error(response.statusText);
       };
-
+if (data.hits.length) {
+  return Notiflix.Notify.failure(
+    '"Sorry, there are no images matching your search query. Please try again."'
+  );
+}
       return await response.json();
     } catch (error) {
       return Notiflix.Notify.failure(
