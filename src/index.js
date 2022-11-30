@@ -20,17 +20,19 @@ function onFormSubmit(event) {
   imgAPI.searchQuery = event.currentTarget.elements.searchQuery.value.trim();
   imgAPI.resetPage();
   gallery.innerHTML = '';
-
+  simpleligthbox.refresh();
+  
   if (imgAPI.searchQuery === '') {
     return Notiflix.Notify.failure('"Please, enter your query"'); //не працює
   }
 
   imgAPI.fetchImg().then(data => {
-    return gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
+   gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
+    // simpleligthbox.refresh();
   });
   // loadBtn.classList.remove('hidden')
   loadBtn.classList.toggle('hidden'); //не працює
-  simpleligthbox.refresh();
+  // simpleligthbox.refresh();
 }
 
 function onLoadMoreBtn(event) {
