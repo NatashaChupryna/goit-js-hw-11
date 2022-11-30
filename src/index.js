@@ -21,19 +21,23 @@ function onFormSubmit(event) {
   imgAPI.resetPage();
   gallery.innerHTML = '';
 
-
   if (imgAPI.searchQuery === '') {
-    return Notiflix.Notify.failure('"Please, enter your query"'); 
+    return Notiflix.Notify.failure('"Please, enter your query"');
   }
 
-  imgAPI.fetchImg().then(data => {
-    gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
-    simpleligthbox.refresh();
-    Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
-  }).catch(error => Notiflix.Notify.failure(
+  imgAPI
+    .fetchImg()
+    .then(data => {
+      gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
+      simpleligthbox.refresh();
+      Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
+    })
+    .catch(error =>
+      Notiflix.Notify.failure(
         '"Sorry, there are no images matching your search query. Please try again."'
-      )) //Не працює
-  
+      )
+    ); //Не працює
+
   loadBtn.classList.toggle('hidden');
 }
 
