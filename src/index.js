@@ -31,14 +31,13 @@ function onFormSubmit(event) {
       gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
       simpleligthbox.refresh();
       Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
-    })
-    .catch(error =>
-      Notiflix.Notify.failure(
-        '"Sorry, there are no images matching your search query. Please try again."'
-      )
-    ); //Не працює
 
-  loadBtn.classList.toggle('hidden');
+      if (data.length) {
+        loadBtn.classList.toggle('hidden');
+      }
+    })
+
+  
 }
 
 function onLoadMoreBtn(event) {

@@ -1,4 +1,5 @@
 import Notiflix from 'notiflix';
+import axios from 'axios';
 
 const axios = require('axios');
 
@@ -28,7 +29,7 @@ export class imagesAPI {
       );
       if (!response.ok) {
         throw new Error(response.statusText);
-      }
+      };
 
       return await response.json();
     } catch (error) {
