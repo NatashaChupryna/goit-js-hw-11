@@ -32,7 +32,7 @@ function onFormSubmit(event) {
     loadBtn.classList.toggle('hidden');
   }).catch(error => Notiflix.Notify.failure(
         '"Sorry, there are no images matching your search query. Please try again."'
-      ))
+      )) //не працює
 }
 
 function onLoadMoreBtn(event) {
