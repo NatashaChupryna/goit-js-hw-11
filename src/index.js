@@ -20,20 +20,20 @@ function onFormSubmit(event) {
   imgAPI.searchQuery = event.currentTarget.elements.searchQuery.value.trim();
   imgAPI.resetPage();
   gallery.innerHTML = '';
-  // simpleligthbox.refresh();
+
 
   if (imgAPI.searchQuery === '') {
-    return Notiflix.Notify.failure('"Please, enter your query"'); //не працює
+    return Notiflix.Notify.failure('"Please, enter your query"'); 
   }
 
   imgAPI.fetchImg().then(data => {
     gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
     simpleligthbox.refresh();
-  }).catch(error => {
-    return Notiflix.Notify.failure(
-        '"Sorry, there are no images matching your search query. Please try again."')
-  })
-  // loadBtn.classList.remove('hidden')
+    Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
+  }).catch(error => Notiflix.Notify.failure(
+        '"Sorry, there are no images matching your search query. Please try again."'
+      )) //Не працює
+  
   loadBtn.classList.toggle('hidden');
 }
 

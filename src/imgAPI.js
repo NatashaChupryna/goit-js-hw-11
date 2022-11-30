@@ -27,6 +27,7 @@ export class imagesAPI {
       if (!response.ok) {
         throw new Error(response.statusText);
       }
+      
       return await response.json();
     } catch (error) {
       return Notiflix.Notify.failure(
