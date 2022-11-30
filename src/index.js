@@ -25,19 +25,12 @@ function onFormSubmit(event) {
     return Notiflix.Notify.failure('"Please, enter your query"');
   }
 
-  imgAPI
-    .fetchImg()
-    .then(data => {
-      gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
-      simpleligthbox.refresh();
-      Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
-
-      if (data.length) {
-        loadBtn.classList.toggle('hidden');
-      }
-    })
-
-  
+  imgAPI.fetchImg().then(data => {
+    gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
+    simpleligthbox.refresh();
+    Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
+    loadBtn.classList.toggle('hidden');
+  });
 }
 
 function onLoadMoreBtn(event) {
