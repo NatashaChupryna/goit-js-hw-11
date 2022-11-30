@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
 
-const axios = require('axios');
+const axios = require('axios').default;
 
 export class imagesAPI {
   constructor() {
