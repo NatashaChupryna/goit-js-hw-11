@@ -9,7 +9,7 @@ const form = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
 const loadBtn = document.querySelector('.load-more');
 const imgAPI = new imagesAPI();
-const simpleligthbox = new SimpleLightbox('.gallery a');
+const simpleligthbox = new SimpleLightbox('.thumb a');
 
 form.addEventListener('submit', onFormSubmit);
 loadBtn.addEventListener('click', onLoadMoreBtn);
@@ -20,7 +20,7 @@ function onFormSubmit(event) {
   imgAPI.searchQuery = event.currentTarget.elements.searchQuery.value.trim();
   imgAPI.resetPage();
   gallery.innerHTML = '';
-  simpleligthbox.refresh();
+  // simpleligthbox.refresh();
   
   if (imgAPI.searchQuery === '') {
     return Notiflix.Notify.failure('"Please, enter your query"'); //не працює
@@ -28,11 +28,11 @@ function onFormSubmit(event) {
 
   imgAPI.fetchImg().then(data => {
    gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
-    // simpleligthbox.refresh();
+    simpleligthbox.refresh();
   });
   // loadBtn.classList.remove('hidden')
-  loadBtn.classList.toggle('hidden'); //не працює
-  // simpleligthbox.refresh();
+  loadBtn.classList.toggle('hidden'); 
+ 
 }
 
 function onLoadMoreBtn(event) {
@@ -59,7 +59,9 @@ function markUp(array) {
         comments,
         downloads,
       }) => `<div class="photo-card">
+  <div class="thumb">
       <a href="${largeImageURL}"></a>
+      </div>
   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
@@ -72,7 +74,7 @@ function markUp(array) {
       <b>Comments : ${comments}</b>
     </p>
     <p class="info-item">
-      <b>Downloads : ${downloads}</b>
+      <b>Downloads : ${downloads} </b>
     </p>
   </div>
 </div>`
@@ -80,4 +82,3 @@ function markUp(array) {
     .join('');
 }
 
-browserslist.clearCaches();
