@@ -29,7 +29,10 @@ function onFormSubmit(event) {
   imgAPI.fetchImg().then(data => {
     gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
     simpleligthbox.refresh();
-  });
+  }).catch(error => {
+    return Notiflix.Notify.failure(
+        '"Sorry, there are no images matching your search query. Please try again."')
+  })
   // loadBtn.classList.remove('hidden')
   loadBtn.classList.toggle('hidden');
 }
