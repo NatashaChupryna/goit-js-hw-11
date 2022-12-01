@@ -26,13 +26,18 @@ function onFormSubmit(event) {
   }
 
   imgAPI.fetchImg().then(data => {
-    gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
+    //  console.log(data.hits);
+    // gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
+    gallery.innerHTML = markUp(data.hits)
     simpleligthbox.refresh();
     Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
     loadBtn.classList.toggle('hidden');
-  }).catch(error => Notiflix.Notify.failure(
-        '"Sorry, there are no images matching your search query. Please try again."'
-      )) //не працює
+  }).catch(error => {
+    console.log(data.hits);
+    Notiflix.Notify.failure(
+      '"Sorry, there are no images matching your search query. Please try again."'
+    )
+  }) 
 }
 
 function onLoadMoreBtn(event) {
