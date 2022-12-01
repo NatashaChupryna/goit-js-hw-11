@@ -25,19 +25,22 @@ function onFormSubmit(event) {
     return Notiflix.Notify.failure('"Please, enter your query"');
   }
 
-  imgAPI.fetchImg().then(data => {
-    //  console.log(data.hits);
-    // gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
-    gallery.innerHTML = markUp(data.hits)
-    simpleligthbox.refresh();
-    Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
-    loadBtn.classList.toggle('hidden');
-  }).catch(error => {
-    console.log(data.hits);
-    Notiflix.Notify.failure(
-      '"Sorry, there are no images matching your search query. Please try again."'
-    )
-  }) 
+  imgAPI
+    .fetchImg()
+    .then(data => {
+       console.log(data.data.hits);
+      // gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
+      gallery.innerHTML = markUp(data.data.hits);
+      simpleligthbox.refresh();
+      Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
+      loadBtn.classList.toggle('hidden');
+    })
+    .catch(error => {
+     
+      Notiflix.Notify.failure(
+        '"Sorry, there are no images matching your search query. Please try again."'
+      );
+    });
 }
 
 function onLoadMoreBtn(event) {

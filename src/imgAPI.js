@@ -27,16 +27,17 @@ export class imagesAPI {
       const response = await axios.get(
         `${BASE_URL}?key=${KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`
       );
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      };
+      console.log(response);
+      // if (!response.ok) {
+      //   throw new Error(response.statusText);
+      // };
       // if (data.hits.length) {
       //   return Notiflix.Notify.failure(
       //     '"Sorry, there are no images matching your search query. Please try again."'
       //   );
       // }
       
-      return await response.json();
+      return await response;
    
     }
     catch (error) {

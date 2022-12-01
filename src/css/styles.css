@@ -34,7 +34,7 @@ body {
 }
 .submit_btn {
   position: absolute;
-  right: 39%;
+  right: 42.5%;
   height: 35px;
   background-color: #afadad;
   border: none;
@@ -69,12 +69,18 @@ body {
   display: flex;
   justify-content: space-between;
   gap: 30px;
-
   flex-wrap: wrap;
 }
 .photo-card {
   flex-basis: calc((100% - 90px) / 4);
   margin-bottom: 100px;
+  border: 0.5px solid #0000003d;
+  border-bottom: none;
+  transform: scale(1);
+  transition: 300ms;
+}
+.photo-card:hover{
+  transform: scale(1.05);
 }
 img {
   width: 100%;
