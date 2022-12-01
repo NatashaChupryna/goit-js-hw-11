@@ -32,7 +32,7 @@ function onFormSubmit(event) {
       // gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
       gallery.innerHTML = markUp(data.data.hits);
       simpleligthbox.refresh();
-      Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
+      Notiflix.Notify.success(`Hooray! We found ${data.data.totalHits} images.`);
       loadBtn.classList.toggle('hidden');
     })
     .catch(error => {
