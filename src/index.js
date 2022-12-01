@@ -32,8 +32,19 @@ function onFormSubmit(event) {
       // gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
       gallery.innerHTML = markUp(data.data.hits);
       simpleligthbox.refresh();
-      Notiflix.Notify.success(`Hooray! We found ${data.data.totalHits} images.`);
+      
       loadBtn.classList.toggle('hidden');
+      if (data.data.hits.length === 0) {
+        gallery.innerHTML = '';
+        return Notiflix.Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
+      };
+      if (data.data.hits.length) {
+        return Notiflix.Notify.success(
+          `Hooray! We found ${data.data.totalHits} images.`
+        );
+      }
     })
     .catch(error => {
      
