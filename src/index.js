@@ -59,12 +59,12 @@ function onFormSubmit(event) {
 function onLoadMoreBtn(event) {
   imgAPI.page += 1;
   imgAPI.fetchImg().then(data => {
-    if (data.hits === data.totalHits) {
+    if (data.hits === data.data.totalHits) {
       Notiflix.Notify.info(
         `We're sorry, but you've reached the end of search results.`
       );
     }
-    return gallery.insertAdjacentHTML('beforeend', markUp(data.hits));
+    return gallery.insertAdjacentHTML('beforeend', markUp(data.data.hits));
   });
 }
 
