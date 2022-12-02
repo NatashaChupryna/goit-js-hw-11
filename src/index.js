@@ -33,9 +33,11 @@ function onFormSubmit(event) {
       gallery.innerHTML = markUp(data.data.hits);
       simpleligthbox.refresh();
       
-      loadBtn.classList.toggle('hidden');
+      loadBtn.classList.remove('hidden');
       if (data.data.hits.length === 0) {
         gallery.innerHTML = '';
+        loadBtn.classList.add('hidden');
+
         return Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
