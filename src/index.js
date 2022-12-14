@@ -2,6 +2,7 @@ import './css/styles.css';
 import Notiflix from 'notiflix';
 import { imagesAPI } from './imgAPI';
 import SimpleLightbox from 'simplelightbox';
+
 // Додатковий імпорт стилів
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
